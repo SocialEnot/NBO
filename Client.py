@@ -10,9 +10,25 @@ colors = [Fore.BLUE, Fore.CYAN, Fore.GREEN, Fore.LIGHTBLACK_EX,
     Fore.LIGHTMAGENTA_EX, Fore.LIGHTRED_EX, Fore.LIGHTWHITE_EX, 
     Fore.LIGHTYELLOW_EX, Fore.MAGENTA, Fore.RED, Fore.WHITE, Fore.YELLOW
 ]
+#Все настройки NBO
+passnboserv = '13112008'
+
 client_color = random.choice(colors)
-SERVER_HOST = "109.191.204.168"
-SERVER_PORT = 9090
+Vibor = input("Использовать IP адрес по умолчанию?(Y/N) ")
+if Vibor == 'Y':
+    Password = input("Введите пороль установленный на сервер 'NBO' - ")
+    if Password == passnboserv:
+        SERVER_HOST = "109.191.204.168"
+        SERVER_PORT = 9090
+    else:
+        print("Error 0x1 - Не корректный пороль от сервера")
+        print("Пороль не верен! Вы перенаправлены на локальное подключение")
+        SERVER_HOST = "localhost"
+        SERVER_PORT = 9090
+else:
+    SERVER_HOST = input("Введите ip адрес сервера - ")
+    SERVER_PORT = input("Введите порт подключения к серверу(до 65535) - ")
+
 separator_token = "<SEP>" 
 s = socket.socket()
 print(f"[*] Connecting to {SERVER_HOST}:{SERVER_PORT}...")
@@ -32,6 +48,7 @@ t.start()
 while True:
     to_send =  input()
     if to_send.lower() == 'q':
+        print("Вы отключены от сервера")
         break
     if to_send.lower() == 'admin':
         print("@Mynamels")
